@@ -2,12 +2,15 @@
 FROM python:3.9.1
 
 # What needs to be done for this container
-RUN pip install pandas
+RUN apt-get install wget
+RUN pip install pandas sqlalchemy psycopg2-binary
+
+
 
 # Copy files from local machine to destination container
 WORKDIR /app
-COPY pipeline.py pipeline.py
+COPY ingest_data.py ingest_data.py
 # it will copy the file from local to /app directory in the image
 
 # Overrides
-ENTRYPOINT ["python", "pipeline.py"]
+ENTRYPOINT ["python", "ingest_data.py"]

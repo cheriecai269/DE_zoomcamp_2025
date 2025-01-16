@@ -1,0 +1,3 @@
+*.csv
+*.csv.gz
+01-docker-terraform/02_docker_sql/ny_taxi_postgres_data
