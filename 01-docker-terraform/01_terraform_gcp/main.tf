@@ -7,15 +7,16 @@ terraform {
   }
 }
 provider "google" {
-  # credentials = ""
-  project = "terraform-demo-448018"
-  region  = "us-central1"
+  # credentials = "<absoulate-path-to-service-account-credential>"
+  # credentials = file(var.credentials) # This is calling variable in variable.tf file
+  project = var.project
+  region  = var.region
 }
 
 
 resource "google_storage_bucket" "demo-bucket" {
-  name          = "terraform-demo-448018-demo-bucket"
-  location      = "US"
+  name          = var.gcs_bucket_name
+  location      = var.location
   force_destroy = true
 
   lifecycle_rule {
@@ -30,5 +31,5 @@ resource "google_storage_bucket" "demo-bucket" {
 
 
 resource "google_bigquery_dataset" "demo-dataset" {
-  dataset_id                  = "demo_dataset"
+  dataset_id = var.bq_dataset_name
 }

@@ -1,3 +1,5 @@
+########################### 02_docker_sql ####################
+
 # Reference from airflow
   postgres:
     image: postgres:13
@@ -24,9 +26,7 @@ docker run -it \
   --name pg-database \
   postgres:13
 
-
-
-
+# For creating pgadmin
 docker run -it \
   -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
   -e PGADMIN_DEFAULT_PASSWORD="root" \
@@ -36,7 +36,6 @@ docker run -it \
   dpage/pgadmin4
 
 
- 
  # Check if ingest_data.py is working by running this command locally
  python ingest_data.py \
     --user=root \
@@ -61,3 +60,10 @@ docker run -it \
     --db=ny_taxi \
     --table=green_taxi_data\
     --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-10.csv.gz"
+
+
+
+########################### 01_terraform_gcp ####################
+
+
+
