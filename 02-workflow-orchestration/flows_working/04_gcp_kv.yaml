@@ -1,0 +1,31 @@
+id: 04_gcp_kv
+namespace: zoomcamp
+
+tasks:
+  - id: gcp_project_id
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_PROJECT_ID
+    kvType: STRING
+    value: kestra-sandbox-450905 # TODO replace with your project id. NOT project name!
+
+  - id: gcp_location
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_LOCATION
+    kvType: STRING
+    value: us-west1
+
+  - id: gcp_bucket_name
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_BUCKET_NAME
+    kvType: STRING
+    value: kestra_zoomcamp_bucket 
+    # It is wired that kestra-bucket does not work
+    # I don't know why, but it seems that the bucket name must be unique across all GCP projects 
+    # (inlcuding the ones that are not yours)
+    # Because bucket is accessible via URL, it must be unique globally.
+
+  - id: gcp_dataset
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_DATASET
+    kvType: STRING
+    value: zoomcamp_taxi

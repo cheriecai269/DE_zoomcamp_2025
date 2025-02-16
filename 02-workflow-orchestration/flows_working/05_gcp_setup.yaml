@@ -1,0 +1,22 @@
+id: 05_gcp_setup
+namespace: zoomcamp
+
+tasks:
+  - id: create_gcs_bucket # This task creates a GCS bucket
+    type: io.kestra.plugin.gcp.gcs.CreateBucket
+    ifExists: SKIP
+    storageClass: REGIONAL
+    name: "{{kv('GCP_BUCKET_NAME')}}" # make sure it's globally unique!
+
+  - id: create_bq_dataset # This task creates a BigQuery dataset
+    type: io.kestra.plugin.gcp.bigquery.CreateDataset
+    name: "{{kv('GCP_DATASET')}}"
+    ifExists: SKIP
+
+pluginDefaults: # This is a global configuration for all GCP tasks
+  - type: io.kestra.plugin.gcp
+    values:
+      serviceAccount: "{{kv('GCP_ServiceAccount_Cred')}}"
+      projectId: "{{kv('GCP_PROJECT_ID')}}"
+      location: "{{kv('GCP_LOCATION')}}"
+      bucket: "{{kv('GCP_BUCKET_NAME')}}"
